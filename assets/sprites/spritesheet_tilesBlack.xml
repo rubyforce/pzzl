@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="ImageTexture" subresource_count="1" version="2.1" version_name="Godot Engine v2.1.stable.official">
+	<main_resource>
+		<string name="resource/name"> "assets/sprites/spritesheet_tilesBlack.xml" </string>
+		<int name="flags"> 7 </int>
+		<image name="image"></image>		<vector2 name="size"> 0, 0 </vector2>
+		<int name="storage"> 0 </int>
+		<real name="lossy_quality"> 0.7 </real>
+
+	</main_resource>
+</resource_file>
