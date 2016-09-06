@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://box.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/generated/spritesheet_backtiles.BackTile_01.atex" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/generated/spritesheet_backtiles.BackTile_02.atex" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/generated/spritesheet_backtiles.BackTile_03.atex" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/generated/spritesheet_backtiles.BackTile_04.atex" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 128, 128 )
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ], "loop":true, "name":"default", "speed":5.0 } ]
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "default"
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4 ), "transitions":FloatArray( 1, 1, 1, 1, 1 ), "update":0, "values":[ 90.0, 94.0, 90.0, 86.0, 90.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/scale")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4 ), "transitions":FloatArray( 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4 ), "transitions":FloatArray( 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 0 ] }
+
+[node name="Node2D" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+
+transform/rot = 90.0
+frames = SubResource( 3 )
+animation = "default"
+
+[node name="animation" type="AnimationPlayer" parent="sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/default = SubResource( 4 )
+next/default = ""
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+
